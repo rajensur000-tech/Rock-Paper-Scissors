@@ -20,8 +20,16 @@ public class GameLogic {
      * @return a String representing the computer's choice
      */
     public String getComputerChoice() {
-        
-        return "";
+        int computerChoice = (int)(Math.random() * 3);
+        if (computerChoice == 0){
+            return "rock";
+        }
+        else if (computerChoice == 1){
+            return "paper";
+        }
+        else {
+            return "scissors";
+        }
     }
 
     /**
@@ -32,7 +40,20 @@ public class GameLogic {
      */
     public String determineWinner(String predictedClass, String computerChoice) {
         
-        return "";
+        String winner = null;
+        if (predictedClass.equals(computerChoice)) {
+            winner = getTieResult();
+        }
+        else if ((predictedClass.equals("rock") && computerChoice.equals("paper")) || (predictedClass.equals("paper") && computerChoice.equals("scissors")) || (predictedClass.equals("scissors") && computerChoice.equals("rock"))) {
+            winner = getComputerWinnerResult();
+        }
+        else if ((predictedClass.equals("rock") && computerChoice.equals("scissors")) || (predictedClass.equals("paper") && computerChoice.equals("rock")) || (predictedClass.equals("scissors") && computerChoice.equals("paper"))) {
+            winner = getUserWinnerResult();
+        }
+        else{
+            return "Invalid option, please try again.";
+        }
+        return "Computer's Choice: " + computerChoice + " Player's Choice: " + predictedClass + " Result: " + winner + " Wins!";
     }
 
     /**
@@ -42,8 +63,8 @@ public class GameLogic {
      * @return A string indicating a tie result.
      */
     public String getTieResult() {
-        
-        return "";
+        gameOver = true;
+        return "tie";
     }
 
     /**
@@ -53,8 +74,8 @@ public class GameLogic {
      * @return a string indicating that the user has won
      */
     public String getUserWinnerResult() {
-        
-        return "";
+        gameOver = true;
+        return "user";
     }
 
     /**
@@ -64,8 +85,8 @@ public class GameLogic {
      * @return A string indicating that the player has lost.
      */
     public String getComputerWinnerResult() {
-        
-        return "";
+        gameOver = true;
+        return "computer";
     }
 
     /**
